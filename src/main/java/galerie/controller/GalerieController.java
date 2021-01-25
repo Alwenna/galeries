@@ -61,7 +61,7 @@ public class GalerieController {
             // cf. https://www.baeldung.com/spring-data-crud-repository-save
             dao.save(galerie);
             // Le code de la catégorie a été initialisé par la BD au moment de l'insertion
-            message = "La galerie '" + galerie.getNom() + "' a été correctement enregistrée";
+            message = "La galerie '" + galerie.getNom() + "' a été  enregistrée avec la clé: " + galerie.getId();
         } catch (DataIntegrityViolationException e) {
             // Les noms sont définis comme 'UNIQUE' 
             // En cas de doublon, JPA lève une exception de violation de contrainte d'intégrité
@@ -83,10 +83,11 @@ public class GalerieController {
      * @return une redirection vers l'affichage de la liste des galeries
      */
     @GetMapping(path = "delete")
-    public String supprimeUneCategoriePuisMontreLaListe(@RequestParam("id") Galerie galerie, RedirectAttributes redirectInfo) {
-        String message = "La galerie '" + galerie.getNom() + "' a bien été supprimée";
+    public String supprimeUneGaleriePuisMontreLaListe(@RequestParam("id") Galerie galerie, RedirectAttributes redirectInfo) {
+        String message;
         try {
             dao.delete(galerie); // Ici on peut avoir une erreur (Si il y a des expositions pour cette galerie par exemple)
+            message = "La galerie '" + galerie.getNom() + "' a bien été supprimée";
         } catch (DataIntegrityViolationException e) {
             // violation de contrainte d'intégrité si on essaie de supprimer une galerie qui a des expositions
             message = "Erreur : Impossible de supprimer la galerie '" + galerie.getNom() + "', il faut d'abord supprimer ses expositions";
