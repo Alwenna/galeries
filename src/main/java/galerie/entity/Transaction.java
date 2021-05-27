@@ -25,8 +25,18 @@ public class Transaction {
     private Exposition lieuDeVente;
     
     @NonNull
-    private Float prixVente;
+    private float prixVente;
     
     private LocalDate venduLe = LocalDate.now();
+
+    public LocalDate getVenduLe() {
+        return this.venduLe;
+    }
+    
+    public float getPrixVente() {
+        return this.prixVente;
+    }
+
+   
     
 }

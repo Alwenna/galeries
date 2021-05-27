@@ -24,24 +24,15 @@ public class GalerieController {
     @Autowired
     private GalerieRepository dao;
 
-    /**
-     * Affiche toutes les catégories dans la base
-     *
-     * @param model pour transmettre les informations à la vue
-     * @return le nom de la vue à afficher ('afficheGaleries.html')
-     */
+    // Affiche toutes les catégories dans la base
+     
     @GetMapping(path = "show")
     public String afficheToutesLesGaleries(Model model) {
         model.addAttribute("galeries", dao.findAll());
         return "afficheGaleries";
     }
 
-    /**
-     * Montre le formulaire permettant d'ajouter une galerie
-     *
-     * @param galerie initialisé par Spring, valeurs par défaut à afficher dans le formulaire
-     * @return le nom de la vue à afficher ('formulaireGalerie.html')
-     */
+   
     @GetMapping(path = "add")
     public String montreLeFormulairePourAjout(@ModelAttribute("galerie") Galerie galerie) {
         return "formulaireGalerie";

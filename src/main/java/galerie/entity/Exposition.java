@@ -29,6 +29,7 @@ public class Exposition {
     @OneToMany(mappedBy = "lieuDeVente")
     @ToString.Exclude
     private List<Transaction> ventes = new LinkedList<>();
+    private LocalDate getDebut;
     
     public float CA() {
         float result =0.0f;
@@ -38,6 +39,10 @@ public class Exposition {
         // Ca peut s'écrire en une seule ligne avec l'API Stream API.
         // cf. https://www.baeldung.com/java-stream-sum
         // return ventes.stream().map(vente -> vente.getPrixVente()).reduce(0f, Float::sum);
+    }
+
+    public LocalDate getDebut() {
+        return this.getDebut;
     }
 
 }
